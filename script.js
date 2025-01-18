@@ -11,28 +11,11 @@ function multiply (a, b) {
 };
 
 function divide (a, b) {
-    if (a == 0 || b == 0) {
-        return "FUCK OFF";
+    if (b == 0) {
+        return "Err";
     };
     return a / b;
 };
-
-function operate (a, b, op) {
-    switch (op) {
-        case "+": 
-            return add(a, b)
-            break;
-        case "*":
-            return multiply(a, b)
-            break;
-        case "-":
-            return subtract(a, b)
-            break;
-        case "/":
-            return divide(a, b)
-            break;
-    }
-}
 
 let inputArr = []
 let result
@@ -48,17 +31,31 @@ function getUserInput (input) {
     screen.textContent = result;
 }
 
-
 // joins the array of numbers inputted by user 
 function evaluate (operator) {
+    console.log(result);
+    if (result) {
+        equationArr.push(result);
+    };
+    console.log(equationArr.length)
     inputArr = [];
-    console.log(equationArr);
-    if (equationArr.length < 2 && operator != 'eq') {
-        equationArr.push(result, operator);     // inputs the operator into
-                                                //the array to be read by =
+    if (equationArr.length == 0) {
+        return;
+    }
+    // if (equationArr.length == 1) {
+    //     if (operator = 'minus') {
+    //         result *= 1
+    //         screen.textContent = result;
+    //     } else {
+    //         return;
+    //     }
+
+    // } else 
+    if (equationArr.length == 1 && operator != 'eq') {
+        equationArr.push(operator);                     // inputs the operator into
+                                                        //the array to be read by =
         return;
     } else {
-        equationArr.push(result);
         switch (equationArr[1]) {
             case 'plus': 
                 equationArr.push(operator);
@@ -85,15 +82,13 @@ function evaluate (operator) {
                 equationArr = [];
                 break;
         }
-        if (operator != 'eq') {
+        if (operator != 'eq') {                        //allows for chain operations
             equationArr.push(result, operator);
         }
-        console.log(equationArr, result);
     }
     screen.textContent = result;
+    console.log(equationArr, result);
 }
-
-
 
 const buttons = document.querySelector('.buttons');
 
@@ -147,8 +142,10 @@ buttons.addEventListener('click', (event) => {
             evaluate('eq');
             break;
         case 'clear':
-            break;
-        default:
+            screen.textContent = '';
+            equationArr = []
+            inputArr = []
+            result = []
             break;
     }
 });
