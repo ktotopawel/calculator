@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    background-color: blanchedalmond;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Doto";
+}
+
+.calc {
+    background-color: #bfc3c4;
+    border-radius: 10%;
+    text-align: center;
+    max-width: 450px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 2rem;
+    /* border: 5px, solid, black; */
+    min-width: 350px;
+    box-shadow: inset -2px -2px 5px black;
+}
+
+.screen {
+    box-sizing: border-box;
+    background-color: #4b4a35;
+    height: ;
+    width: 90%;
+    margin: 14px auto;
+    border-radius: 5px;
+    /* border: 2px solid black; */
+    font-family: "Doto";
+    font-weight: 800;
+    padding: 15px;
+    color: aliceblue;
+    text-align: right;
+    font-size: 36px;
+    box-shadow: inset 2px 2px 8px black ;
+}
+
+.buttons {
+    position: relative;
+
+    font-family: "Quantico";
+    font-size: 22px;
+    /* padding: 2em; */
+    box-sizing: border-box;
+    width: 90%;
+    margin: 1rem auto;
+    padding: 5px;
+    border-radius: 5px;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: [c1] 1fr [c2] 1fr [c3] 1fr [c4] 1fr [cend];
+    grid-template-rows: [r1] 1fr [r2] 1fr [r3] 1fr [r4] 1fr [r5];
+    justify-content: center;
+    /* border: 2px solid black; */
+    box-shadow: inset 1px 1px 5px black;
+    /* align-items: center; */
+}
+
+.button {
+    /* border: 1px, solid, black; */
+    background-color: #2a2829;
+    border-radius: 14px;
+    padding: 14px;
+    color: antiquewhite;
+    cursor: pointer;
+    box-shadow: 3px 3px #2a2829;
+    box-shadow: inset -3px -3px 6px -1px black;
+}
+
+.button::before {
+    position: absolute;
+}
+
+#plus, #minus, #mult, #divide {
+    grid-column: c4/ cend;
+}
+
+#plus {
+    grid-row: r1/r2;
+}
+
+#minus {
+    grid-row: r2/r3;
+}
+
+#mult {
+    grid-row: r3/r4;
+}
+
+#divide, #clear {
+    grid-row: r4/r5;
+}
+
+#one, #four, #seven #clear {
+    grid-column: c1 / c2;
+}
+
+#two, #five, #eight, #zero {
+    grid-column: c2 / c3;
+}
+
+#three, #six, #nine {
+    grid-column: c3 / c4;
+}
+
+#clear {
+    background-color: #703737;
+}
+
+#equals {
+    background-color: #ac9144;
+}
