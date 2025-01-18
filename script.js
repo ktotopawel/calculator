@@ -1,5 +1,5 @@
 function add(a, b) {
-    return a + b;
+    return Number(a) + Number(b);
 };
 
 function subtract(a, b) {
@@ -34,13 +34,68 @@ function operate (a, b, op) {
     }
 }
 
-let equation = []
+let inputArr = []
+let result
+let equationArr = []
 
+const screen = document.querySelector('.screen');
+
+
+// puts the user input into an array (couldn't think of a better way)
 function getUserInput (input) {
-    equation.push(input);
-    equation.join('');
-    console.log(equation);
+    // if (equationArr.length != 0) {       BAD CODE NOT USABLE I THINK
+    //     equationArr = []
+    // }
+    inputArr.push(input);
+    result = inputArr.join('');
+    screen.textContent = result;
 }
+
+
+// joins the array of numbers inputed by user 
+function evaluate (operator) {
+    inputArr = [];
+    equationArr.push(result, operator) ;
+    console.log(equationArr);
+    if (equationArr.length < 3) {
+        
+        // HAVE TO ADD SOMETHING HERE FOR EQUALS 
+        // LIKE PROBABLY TO OUTPUT THE VARIABLE WITHOUT PUSHING ANYTHING
+        //OR MAYBE I WILL DO IT IN THE SWITCH BELOW I'LL SEE
+        return;
+    } else {
+        switch (equationArr[1]) {
+            case 'plus': 
+                result = add(equationArr[0], equationArr[2])
+                screen.textContent = result;
+                equationArr = [];
+                equationArr.push(result, operator);
+                break;
+            case 'minus': 
+                result = subtract(equationArr[0], equationArr[2])
+                screen.textContent = result;
+                equationArr = [];
+                equationArr.push(result, operator);
+                break;
+            case 'mult': 
+                result = multiply(equationArr[0], equationArr[2])
+                screen.textContent = result;
+                equationArr = [];
+                equationArr.push(result, operator);
+                break;
+            case 'by': 
+                result = divide(equationArr[0], equationArr[2])
+                screen.textContent = result;
+                equationArr = [];
+                equationArr.push(result, operator);
+                break;
+        }
+        console.log(equationArr, result);
+    }
+    screen.textContent = result;
+}
+
+
 
 const buttons = document.querySelector('.buttons')
 
@@ -78,13 +133,17 @@ buttons.addEventListener('click', (event) => {
         case 'zero':
             getUserInput(0);
             break;
-        case 'add':
+        case 'plus':
+            evaluate('plus');
             break;
-        case 'subtract':
+        case 'minus':
+            evaluate('minus');
             break;
         case 'mult':
+            evaluate('mult');
             break;
         case 'divide':
+            evaluate('by');
             break;
         case 'equals':
             break;
