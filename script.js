@@ -55,36 +55,40 @@ function getUserInput (input) {
 // joins the array of numbers inputed by user 
 function evaluate (operator) {
     inputArr = [];
-    equationArr.push(result, operator) ;
     console.log(equationArr);
-    if (equationArr.length < 3) {
-        
+    if (equationArr.length < 2) {
+        equationArr.push(result, operator);
         // HAVE TO ADD SOMETHING HERE FOR EQUALS 
         // LIKE PROBABLY TO OUTPUT THE VARIABLE WITHOUT PUSHING ANYTHING
         //OR MAYBE I WILL DO IT IN THE SWITCH BELOW I'LL SEE
         return;
     } else {
+        equationArr.push(result);
         switch (equationArr[1]) {
             case 'plus': 
-                result = add(equationArr[0], equationArr[2])
+                equationArr.push(operator);
+                result = add(equationArr[0], equationArr[2]);
                 screen.textContent = result;
                 equationArr = [];
                 equationArr.push(result, operator);
                 break;
             case 'minus': 
-                result = subtract(equationArr[0], equationArr[2])
+                equationArr.push(operator);
+                result = subtract(equationArr[0], equationArr[2]);
                 screen.textContent = result;
                 equationArr = [];
                 equationArr.push(result, operator);
                 break;
             case 'mult': 
-                result = multiply(equationArr[0], equationArr[2])
+                equationArr.push(operator);
+                result = multiply(equationArr[0], equationArr[2]);
                 screen.textContent = result;
                 equationArr = [];
                 equationArr.push(result, operator);
                 break;
             case 'by': 
-                result = divide(equationArr[0], equationArr[2])
+                equationArr.push(operator);
+                result = divide(equationArr[0], equationArr[2]);
                 screen.textContent = result;
                 equationArr = [];
                 equationArr.push(result, operator);
@@ -97,7 +101,7 @@ function evaluate (operator) {
 
 
 
-const buttons = document.querySelector('.buttons')
+const buttons = document.querySelector('.buttons');
 
 buttons.addEventListener('click', (event) => {
     let target = event.target;
