@@ -43,24 +43,19 @@ const screen = document.querySelector('.screen');
 
 // puts the user input into an array (couldn't think of a better way)
 function getUserInput (input) {
-    // if (equationArr.length != 0) {       BAD CODE NOT USABLE I THINK
-    //     equationArr = []
-    // }
     inputArr.push(input);
     result = inputArr.join('');
     screen.textContent = result;
 }
 
 
-// joins the array of numbers inputed by user 
+// joins the array of numbers inputted by user 
 function evaluate (operator) {
     inputArr = [];
     console.log(equationArr);
-    if (equationArr.length < 2) {
-        equationArr.push(result, operator);
-        // HAVE TO ADD SOMETHING HERE FOR EQUALS 
-        // LIKE PROBABLY TO OUTPUT THE VARIABLE WITHOUT PUSHING ANYTHING
-        //OR MAYBE I WILL DO IT IN THE SWITCH BELOW I'LL SEE
+    if (equationArr.length < 2 && operator != 'eq') {
+        equationArr.push(result, operator);     // inputs the operator into
+                                                //the array to be read by =
         return;
     } else {
         equationArr.push(result);
@@ -70,29 +65,28 @@ function evaluate (operator) {
                 result = add(equationArr[0], equationArr[2]);
                 screen.textContent = result;
                 equationArr = [];
-                equationArr.push(result, operator);
                 break;
             case 'minus': 
                 equationArr.push(operator);
                 result = subtract(equationArr[0], equationArr[2]);
                 screen.textContent = result;
                 equationArr = [];
-                equationArr.push(result, operator);
                 break;
             case 'mult': 
                 equationArr.push(operator);
                 result = multiply(equationArr[0], equationArr[2]);
                 screen.textContent = result;
                 equationArr = [];
-                equationArr.push(result, operator);
                 break;
             case 'by': 
                 equationArr.push(operator);
                 result = divide(equationArr[0], equationArr[2]);
                 screen.textContent = result;
                 equationArr = [];
-                equationArr.push(result, operator);
                 break;
+        }
+        if (operator != 'eq') {
+            equationArr.push(result, operator);
         }
         console.log(equationArr, result);
     }
@@ -150,6 +144,7 @@ buttons.addEventListener('click', (event) => {
             evaluate('by');
             break;
         case 'equals':
+            evaluate('eq');
             break;
         case 'clear':
             break;
