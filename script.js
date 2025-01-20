@@ -27,30 +27,19 @@ const screen = document.querySelector('.screen');
 // puts the user input into an array (couldn't think of a better way)
 function getUserInput (input) {
     inputArr.push(input);
-    result = inputArr.join('');
+    result = inputArr.join('');   // joins the array of numbers inputted by user 
     screen.textContent = result;
 }
 
-// joins the array of numbers inputted by user 
+
 function evaluate (operator) {
-    console.log(result);
-    if (result) {
+    if (result != undefined) {  //checks if result is undefined (otherwise it breaks)
         equationArr.push(result);
     };
-    console.log(equationArr.length)
     inputArr = [];
     if (equationArr.length == 0) {
         return;
     }
-    // if (equationArr.length == 1) {
-    //     if (operator = 'minus') {
-    //         result *= 1
-    //         screen.textContent = result;
-    //     } else {
-    //         return;
-    //     }
-
-    // } else 
     if (equationArr.length == 1 && operator != 'eq') {
         equationArr.push(operator);                     // inputs the operator into
                                                         //the array to be read by =
@@ -88,6 +77,11 @@ function evaluate (operator) {
     }
     screen.textContent = result;
     console.log(equationArr, result);
+}
+
+function changeSigned () {
+    result *= -1;
+    screen.textContent = result;
 }
 
 const buttons = document.querySelector('.buttons');
@@ -143,9 +137,15 @@ buttons.addEventListener('click', (event) => {
             break;
         case 'clear':
             screen.textContent = '';
-            equationArr = []
-            inputArr = []
-            result = []
+            equationArr = [];
+            inputArr = [];
+            result = undefined;
+            break;
+        case 'float': 
+            getUserInput('.')
+            break;
+        case 'signed': 
+            changeSigned();
             break;
     }
 });
