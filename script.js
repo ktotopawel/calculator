@@ -33,10 +33,10 @@ function getUserInput (input) {
 
 
 function evaluate (operator) {
-    if (result != undefined) {  //checks if result is undefined (otherwise it breaks)
+    inputArr = [];
+    if (result != undefined && equationArr[0] != result ) {  //checks if result is undefined (otherwise it breaks)
         equationArr.push(result);
     };
-    inputArr = [];
     if (equationArr.length == 0) {
         return;
     }
