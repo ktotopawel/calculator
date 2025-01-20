@@ -34,7 +34,7 @@ function getUserInput (input) {
 
 function evaluate (operator) {
     inputArr = [];
-    if (result != undefined && equationArr[0] != result ) {  //checks if result is undefined (otherwise it breaks)
+    if ((result != undefined) && (typeof(equationArr[equationArr.length[-1]]) != 'number') ) {  //checks if result is undefined (otherwise it breaks)
         equationArr.push(result);
     };
     if (equationArr.length == 0) {
@@ -59,7 +59,7 @@ function evaluate (operator) {
                 equationArr = [];
                 break;
             case 'mult': 
-                equationArr.push(operator);
+                equationArr.slice(operator);
                 result = multiply(equationArr[0], equationArr[2]);
                 screen.textContent = result;
                 equationArr = [];
