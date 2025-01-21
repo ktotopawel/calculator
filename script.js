@@ -33,6 +33,7 @@ function getUserInput (input) {
 
 function evaluate (operator) {
     inputArr = [];
+
     if ((result != null) && (typeof(equationArr[-1]) != 'number')) {  //checks if result is null (otherwise it breaks)
         equationArr.push(result);
     };
@@ -45,39 +46,30 @@ function evaluate (operator) {
         equationArr.push(operator);                     // inputs the operator into the array to be read by =
         return;
     } 
+
     else {
         if (equationArr.length == 2) {
             equationArr.splice(1, 1);
         }
-
-        switch (equationArr[1]) {
-            case 'plus': 
-                equationArr.push(operator);
-                result = add(equationArr[0], equationArr[2]);
+        if (equationArr.length > 2) {
+            switch (equationArr[1]) {
+                case 'plus': 
+                    result = add(equationArr[0], equationArr[2]);
+                    break;
+                    case 'minus': 
+                    result = subtract(equationArr[0], equationArr[2]);
+                    break;
+                    case 'mult': 
+                    result = multiply(equationArr[0], equationArr[2]);
+                    break;
+                    case 'by': 
+                    result = divide(equationArr[0], equationArr[2]);
+                    break;
+                }
                 screen.textContent = result;
                 equationArr = [];
-                break;
-            case 'minus': 
-                equationArr.push(operator);
-                result = subtract(equationArr[0], equationArr[2]);
-                screen.textContent = result;
-                equationArr = [];
-                break;
-            case 'mult': 
-                equationArr.slice(operator);
-                result = multiply(equationArr[0], equationArr[2]);
-                screen.textContent = result;
-                equationArr = [];
-                break;
-            case 'by': 
-                equationArr.push(operator);
-                result = divide(equationArr[0], equationArr[2]);
-                screen.textContent = result;
-                equationArr = [];
-                break;
         }
-
-        if (operator != 'eq' && result != null) {                        //allows for chain operations
+        if (operator != 'eq' && result != null && typeof(equationArr[-1]) != result && equationArr.length != 2) {                        //allows for chain operations
             equationArr.push(result, operator);
             result = null;
         }
