@@ -18,7 +18,7 @@ function divide (a, b) {
 };
 
 let inputArr = []
-let result
+let result = null
 let equationArr = []
 
 const screen = document.querySelector('.screen');
@@ -34,7 +34,7 @@ function getUserInput (input) {
 
 function evaluate (operator) {
     inputArr = [];
-    if ((result != undefined) && (typeof(equationArr[equationArr.length[-1]]) != 'number') ) {  //checks if result is undefined (otherwise it breaks)
+    if ((result != null) && (typeof(equationArr[-1]) != 'number') ) {  //checks if result is null (otherwise it breaks)
         equationArr.push(result);
     };
     if (equationArr.length == 0) {
@@ -45,6 +45,9 @@ function evaluate (operator) {
                                                         //the array to be read by =
         return;
     } else {
+        if (equationArr.length == 2) {
+            equationArr.splice(1, 1);
+        }
         switch (equationArr[1]) {
             case 'plus': 
                 equationArr.push(operator);
@@ -75,7 +78,9 @@ function evaluate (operator) {
             equationArr.push(result, operator);
         }
     }
-    screen.textContent = result;
+    if (result != null) {
+        screen.textContent = result;
+    }
     console.log(equationArr, result);
 }
 
@@ -139,7 +144,7 @@ buttons.addEventListener('click', (event) => {
             screen.textContent = '';
             equationArr = [];
             inputArr = [];
-            result = undefined;
+            result = null;
             break;
         case 'float': 
             getUserInput('.')
