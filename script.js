@@ -29,25 +29,28 @@ function getUserInput (input) {
     inputArr.push(input);
     result = inputArr.join('');   // joins the array of numbers inputted by user 
     screen.textContent = result;
+    
 }
-
 
 function evaluate (operator) {
     inputArr = [];
-    if ((result != null) && (typeof(equationArr[-1]) != 'number') ) {  //checks if result is null (otherwise it breaks)
+    if ((result != null) && (typeof(equationArr[-1]) != 'number')) {  //checks if result is null (otherwise it breaks)
         equationArr.push(result);
     };
+
     if (equationArr.length == 0) {
         return;
     }
+
     if (equationArr.length == 1 && operator != 'eq') {
-        equationArr.push(operator);                     // inputs the operator into
-                                                        //the array to be read by =
+        equationArr.push(operator);                     // inputs the operator into the array to be read by =
         return;
-    } else {
+    } 
+    else {
         if (equationArr.length == 2) {
             equationArr.splice(1, 1);
         }
+
         switch (equationArr[1]) {
             case 'plus': 
                 equationArr.push(operator);
@@ -74,13 +77,17 @@ function evaluate (operator) {
                 equationArr = [];
                 break;
         }
-        if (operator != 'eq') {                        //allows for chain operations
+
+        if (operator != 'eq' && result != null) {                        //allows for chain operations
             equationArr.push(result, operator);
+            result = null;
         }
     }
+
     if (result != null) {
         screen.textContent = result;
     }
+
     console.log(equationArr, result);
 }
 
