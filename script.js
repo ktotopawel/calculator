@@ -29,7 +29,6 @@ function getUserInput (input) {
     inputArr.push(input);
     result = inputArr.join('');   // joins the array of numbers inputted by user 
     screen.textContent = result;
-    
 }
 
 function evaluate (operator) {
@@ -154,7 +153,9 @@ buttons.addEventListener('click', (event) => {
             result = null;
             break;
         case 'float': 
+            if (inputArr.length != 0) {
             getUserInput('.')
+            }
             break;
         case 'signed': 
             changeSigned();
