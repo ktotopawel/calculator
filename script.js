@@ -36,6 +36,7 @@ function evaluate (operator) {
 
     if ((result != null) && (typeof(equationArr[-1]) != 'number')) {  //checks if result is null (otherwise it breaks)
         equationArr.push(result);
+        result = null;
     };
 
     if (equationArr.length == 0) {
@@ -48,8 +49,8 @@ function evaluate (operator) {
     } 
 
     else {
-        if (equationArr.length == 2) {
-            equationArr.splice(1, 1);
+        if (equationArr.length == 2 && operator != 'eq') {
+            equationArr.splice(1, 1, operator);
         }
         if (equationArr.length > 2) {
             switch (equationArr[1]) {
