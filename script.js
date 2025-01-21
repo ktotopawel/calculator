@@ -122,7 +122,9 @@ buttons.addEventListener('click', (event) => {
             getUserInput(9);
             break;
         case 'zero':
+            if (inputArr[0] != 0 || inputArr.includes('.')) {
             getUserInput(0);
+            }
             break;
         case 'plus':
             evaluate('plus');
@@ -146,7 +148,7 @@ buttons.addEventListener('click', (event) => {
             result = null;
             break;
         case 'float': 
-            if (inputArr.length != 0) {
+            if (inputArr.length != 0 && inputArr.includes('.') != true) {
             getUserInput('.')
             }
             break;
